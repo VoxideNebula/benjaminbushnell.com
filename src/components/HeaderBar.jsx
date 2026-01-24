@@ -6,7 +6,7 @@ const HeaderBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       // Toggle background after 50px of scrolling
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
 
     window.addEventListener('scroll', handleScroll);

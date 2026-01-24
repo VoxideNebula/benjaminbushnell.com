@@ -1,18 +1,20 @@
 ---
-const platform = "github";
-const username = "VoxideNebula";
 import Social from './Social.astro';
+const currentYear = new Date().getFullYear();
 ---
 
-<footer>
-  <Social platform="github" username="VoxideNebula" />
-  <Social platform="youtube" username="@benjaminbushnell" />
-</footer>
+<footer class="bg-black w-full text-white py-6 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    
+    <div class="text-sm text-gray-500 order-2 md:order-1">
+      &copy; {currentYear} <span class="text-gray-300 font-medium">Benjamin Bushnell</span>
+    </div>
 
-<style>
-  footer {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-</style>
+    <div class="flex items-center space-x-6 order-1 md:order-2">
+      <Social name="linkedin" href="#" />
+      <Social name="github" href="#" />
+      <Social name="x" href="#" />
+    </div>
+
+  </div>
+</footer>
