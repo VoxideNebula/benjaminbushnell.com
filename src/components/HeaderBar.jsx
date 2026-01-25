@@ -6,7 +6,7 @@ const HeaderBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       // Toggle background after 50px of scrolling
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -21,9 +21,17 @@ const HeaderBar = () => {
         }`}
     >
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Dynamic text color based on scroll state */}
-        <div className={`text-2xl font-bold transition-colors duration-300 text-white`}>
-          <a href="/">Benjamin Bushnell</a>
+        {/* Column 2: Centered Logo PNG */}
+        <div className="flex justify-center">
+          <a href="/">
+            <img
+              src="/Logo.png"
+              alt="Benjamin Bushnell Logo"
+              /* Use dynamic classes to shrink the logo on scroll */
+              className={`transition-all duration-300 ease-in-out object-contain ${isScrolled ? 'h-10' : 'h-14'
+                }`}
+            />
+          </a>
         </div>
 
         <ul className={`flex space-x-8 font-medium transition-colors duration-300 text-white`}>

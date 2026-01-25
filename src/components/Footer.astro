@@ -3,9 +3,10 @@ import Social from './Social.astro';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-black w-full text-white py-6 border-t border-white/10">
+<footer class="w-full bg-black text-white py-6 mt-auto [box-shadow:0_100vh_0_100vh_#000]">
   <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-    
+  <div class="absolute top-0 left-0 w-full h-[500px] bg-black -z-10"></div>
+
     <div class="text-sm text-gray-500 order-2 md:order-1">
       &copy; {currentYear} <span class="text-gray-300 font-medium">Benjamin Bushnell</span>
     </div>
@@ -18,3 +19,23 @@ const currentYear = new Date().getFullYear();
 
   </div>
 </footer>
+<!-- --- -->
+<!-- import SocialIcon from './SocialIcon.astro'; -->
+<!-- const currentYear = new Date().getFullYear(); -->
+<!-- --- -->
+<!---->
+<!-- <footer class="w-full bg-black text-white py-8 mt-auto relative overflow-hidden"> -->
+<!--    -->
+<!---->
+<!--   <div class="max-w-[80ch] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10"> -->
+<!--     <div class="text-sm text-gray-500"> -->
+<!--       &copy; {currentYear} Benjamin Bushnell -->
+<!--     </div> -->
+<!---->
+<!--     <div class="flex items-center space-x-6"> -->
+<!--       <SocialIcon name="linkedin" href="#" /> -->
+<!--       <SocialIcon name="github" href="#" /> -->
+<!--       <SocialIcon name="x" href="#" /> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </footer> -->

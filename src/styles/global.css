@@ -17,14 +17,15 @@
 }
 
 html {
-  background-color: #041f30;
   font-family: sans-serif;
   color: #fff;
   margin: 0;
   padding: 0;
+  background-color: #000;
 }
 
 body {
+  background-color: #000;
   margin: 0; /* Remove the auto and the max-width */
   width: 100%;
   min-height: 100vh;
@@ -86,4 +87,12 @@ h1 {
   .menu {
     display: none;
   }
+}
+
+.peek {
+  background-color: #000000;
+  position: fixed;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
 }
