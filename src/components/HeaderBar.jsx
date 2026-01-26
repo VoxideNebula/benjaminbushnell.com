@@ -34,15 +34,15 @@ const HeaderBar = () => {
 
         <ul className={`flex space-x-8 font-bold text-lg transition-colors duration-300 text-white`}>
           <li className="hover:opacity-70 cursor-pointer">
-            <a href="/" class="group relative inline-block">
+            <a href="/" className="group relative inline-block">
               <span>Home</span>
-              <span class="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
           <li className="hover:opacity-70 cursor-pointer">
-            <a href="/blog/" class="group relative inline-block">
+            <a href="/blog/" className="group relative inline-block">
               <span>Blog</span>
-              <span class="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
         </ul>
@@ -52,11 +52,3 @@ const HeaderBar = () => {
 };
 
 export default HeaderBar;
-
-
-// <li className="hover:opacity-70 cursor-pointer">
-//   <a href="/about/" class="group relative inline-block">
-//     <span>About</span>
-//     <span class="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
-//   </a>
-// </li>
