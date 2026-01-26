@@ -21,16 +21,14 @@ const HeaderBar = () => {
         }`}
     >
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="absolute left-1/2 -translate-x-1/2 top-0 flex justify-center">
-          <a href="/">
-            <img
-              src="/logo.png"
-              alt="Benjamin Bushnell Logo"
-              className={`transition-all w-auto drop-shadow-lg  duration-300 ease-in-out object-contain ${isScrolled ? 'h-16' : 'h-32'
-                }`}
-            />
-          </a>
-        </div>
+        <a href="/">
+          <img
+            src="/logo.png"
+            alt="Benjamin Bushnell Logo"
+            className={`transition-all w-auto drop-shadow-lg  duration-300 ease-in-out object-contain ${isScrolled ? 'h-16' : 'h-32'
+              }`}
+          />
+        </a>
 
         <ul className={`flex space-x-8 font-bold text-lg transition-colors duration-300 text-white`}>
           <li className="hover:opacity-70 cursor-pointer">
