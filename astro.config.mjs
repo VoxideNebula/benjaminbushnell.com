@@ -9,6 +9,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: "https://www.benjaminbushnell.com",
   integrations: [react()],
+  site: "https://www.benjaminbushnell.com",
+  base: '/',
 });
