@@ -96,3 +96,15 @@ h1 {
   bottom: 0;
   left: 0;
 }
+
+
+.hero-parallax {
+  background-attachment: fixed;
+}
+
+/* Turn off parallax for touch devices where it jitters/blurs */
+@media (max-width: 1024px) {
+  .hero-parallax {
+    background-attachment: scroll;
+  }
+}
