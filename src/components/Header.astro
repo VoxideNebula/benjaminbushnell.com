@@ -2,5 +2,6 @@
 import ThemeIcon from './ThemeIcon.astro';
 import HeaderBar from './HeaderBar';
 ---
-<div class="h-20" aria-hidden="true"></div> {/* Just a spacer */}
-<HeaderBar client:load />
+<div class="absolute top-0 left-0 w-full z-50">
+  <HeaderBar client:load />
+</div>

@@ -6,14 +6,16 @@ const allPosts = await getCollection("blog");
 const pageTitle = "Blog";
 ---
 <Base pageTitle={pageTitle}>
-  <body>
-    <p>This is where I will post about my journey learning Astro.</p>
-    <ul>
-      {
-        allPosts.map((post: any) => (
-          <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
-        ))
-      }
-    </ul>
-  </body>
+  <div class="max-w-7xl mx-auto px-6 pt-50 py-10">
+    <body>
+      <p>This is where I will post about my journey learning Astro.</p>
+      <ul>
+        {
+          allPosts.map((post: any) => (
+            <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
+          ))
+        }
+      </ul>
+    </body>
+  </div>
 </Base>

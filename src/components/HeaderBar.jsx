@@ -16,28 +16,35 @@ const HeaderBar = () => {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${isScrolled
-        ? 'bg-black shadow-md py-4'
+        ? 'fixed top-0 bg-black shadow-md py-4'
         : 'bg-transparent py-6'
         }`}
     >
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Column 2: Centered Logo PNG */}
-        <div className="flex justify-center">
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 flex justify-center">
           <a href="/">
             <img
-              src="/Logo.png"
+              src="/logo.png"
               alt="Benjamin Bushnell Logo"
-              /* Use dynamic classes to shrink the logo on scroll */
-              className={`transition-all duration-300 ease-in-out object-contain ${isScrolled ? 'h-10' : 'h-14'
+              className={`transition-all w-auto drop-shadow-lg  duration-300 ease-in-out object-contain ${isScrolled ? 'h-16' : 'h-32'
                 }`}
             />
           </a>
         </div>
 
-        <ul className={`flex space-x-8 font-medium transition-colors duration-300 text-white`}>
-          <li className="hover:opacity-70 cursor-pointer"><a href="/">Home</a></li>
-          <li className="hover:opacity-70 cursor-pointer"><a href="/about/">About</a></li>
-          <li className="hover:opacity-70 cursor-pointer"><a href="/blog/">Blog</a></li>
+        <ul className={`flex space-x-8 font-bold text-lg transition-colors duration-300 text-white`}>
+          <li className="hover:opacity-70 cursor-pointer">
+            <a href="/" class="group relative inline-block">
+              <span>Home</span>
+              <span class="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li className="hover:opacity-70 cursor-pointer">
+            <a href="/blog/" class="group relative inline-block">
+              <span>Blog</span>
+              <span class="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -45,3 +52,11 @@ const HeaderBar = () => {
 };
 
 export default HeaderBar;
+
+
+// <li className="hover:opacity-70 cursor-pointer">
+//   <a href="/about/" class="group relative inline-block">
+//     <span>About</span>
+//     <span class="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
+//   </a>
+// </li>

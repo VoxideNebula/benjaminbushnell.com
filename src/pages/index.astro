@@ -1,8 +1,28 @@
 ---
 import Prose from '../components/Prose.astro';
 import Base from '../layouts/Base.astro';
-const pageTitle = 'Home Page'
+import AboutMe from '../components/AboutMe.astro';
+const pageTitle = 'Home';
 ---
-
 <Base pageTitle={pageTitle}>
+  <section class="relative h-[40vh] w-full bg-slate-900">
+
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+      style="background-image: url('/hero-background.jpeg');"
+      aria-hidden="true"
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+
+    <!-- <div class="relative z-20 flex items-center justify-center h-full"> -->
+    <!--   <h1 class="text-white text-6xl font-bold tracking-tight drop-shadow-2xl"> -->
+    <!--     Benjamin Bushnell -->
+    <!--   </h1> -->
+    <!-- </div> -->
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6 py-10">
+    <AboutMe />
+  </div>
 </Base>
