@@ -5,8 +5,7 @@ import AboutMe from '../components/AboutMe.astro';
 const pageTitle = 'Home';
 ---
 <Base pageTitle={pageTitle}>
-  <section class="relative h-[50vh] w-full bg-slate-900">
-
+  <section class="relative h-[45vh] w-full bg-slate-900">
     <div
       class="bg-cover bg-bottom absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
       style="background-image: url('/hero-background.jpeg');"
@@ -21,3 +20,15 @@ const pageTitle = 'Home';
   </div>
 </Base>
 
+<style>
+  .hero-parallax {
+    background-attachment: fixed;
+  }
+
+  /* Turn off parallax for touch devices where it jitters/blurs */
+  @media (max-width: 1024px) {
+    .hero-parallax {
+      background-attachment: scroll;
+    }
+  }
+</style>
