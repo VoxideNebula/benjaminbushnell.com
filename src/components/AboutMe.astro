@@ -1,64 +1,25 @@
 ---
-const pageTitle = 'About Me';
-const identity = {
-  firstName: "Benjamin",
-  country: "United States",
-  occupation: "Cloud DevOps Engineer",
-  hobbies: ["Producing Music", "Writing", "Tabletop/Video Games"],
-};
-
-const skills = ["Python", "AWS", "JavaScript", "Kotlin", "Writing Docs"];
-const happy = true;
-const finished = false;
-const goal = 3;
 ---
+
 <body>
-  <h1>About Me</h1>
-
-  <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
-
-  <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
-  <p>Here are a few facts about me:</p>
-  <ul>
-    <li>My name is {identity.firstName}.</li>
-    <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-    {identity.hobbies.length >= 2 &&
-      <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-    }
-  </ul>
-  <p>My skills are:</p>
-  <ul>
-    {skills.map((skill) => <li>{skill}</li>)}
-  </ul>
-
-  {happy && <p>I am happy to be learning Astro!</p>}
-
-  {finished && <p>I finished this tutorial!</p>}
-
-  {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-
-
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
-  <h1>About Benjamin</h1>
+  <div class="order-1 md:order-2">
+    <img 
+      src="/profile.jpeg" 
+      alt="Benjamin Bushnell" 
+      class="rounded-2xl shadow-2xl w-full h-auto object-cover border-4 border-white/10 shadow-[0_0_50px_rgba(255,151,118,0.2)]"
+    />
+  </div>
+  <div class="order-2 md:order-1">
+    <h1 class="text-center">About Benjamin Bushnell</h1>
+    <p>Benjamin loves puzzles, making connections between seemingly unrelated things, and machines that do their jobs very well. Whether it be coding, producing music, or writing, he loves tinkering and recreating beautiful things to see how they work— to add more beauty to the world.</p>
+    <p>He is currently a Cloud DevOps Engineer with the U.S. Department of the Interior. He works primarily in AWS and specializes in infrastructure, automation and CI/CD. The most important skills he uses at this job are:</p>
+    <ul>
+      <li>GitLab CI/CD</li>
+      <li>AWS Lambda</li>
+      <li>Python + Boto3</li>
+      <li>CloudFormation</li>
+      <li>Ansible</li>
+    </ul>
+    <p>Everything good that Benjamin is or has accomplished can be owed to the gifts given to him by God. All glory to Him and Him alone.</p>
+  </div>
 </body>

@@ -2,6 +2,7 @@
 import Prose from '../components/Prose.astro';
 import Base from '../layouts/Base.astro';
 import AboutMe from '../components/AboutMe.astro';
+import Music from '../components/Music.astro';
 const pageTitle = 'Home';
 ---
 <Base pageTitle={pageTitle}>
@@ -15,7 +16,13 @@ const pageTitle = 'Home';
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-6 py-10">
+  <div class="prose prose-invert max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
     <AboutMe />
+  </div>
+
+  <span class="block w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-10"></span>
+
+  <div class="prose prose-invert max-w-7xl mx-auto px-6 py-10 gap-10 items-center">
+    <Music />
   </div>
 </Base>

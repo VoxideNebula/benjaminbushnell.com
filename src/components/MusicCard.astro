@@ -1,0 +1,37 @@
+---
+const { title, artist, spotify_url, apple_url, soundcloud_url, coverImage } = Astro.props;
+---
+<div class="group relative flex items-center justify-start gap-6 p-5 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden">
+  
+  <div class="relative h-30 w-30 flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg shadow-inner">
+    <img 
+      src={coverImage} 
+      alt={title} 
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+    />
+  </div>
+
+  <div class="flex flex-grow flex-col justify-center min-w-0">
+    <h3 class="font-bold text-white text-lg leading-tight truncate">{title}</h3>
+    <p class="text-gray-400 text-sm truncate">{artist}</p>
+  </div>
+  <div class="flex flex-col items-end gap-3 pl-4 border-white/10">
+    {spotify_url && (
+      <a href={spotify_url} target="_blank" class="text-[10px] text-[#1DB954] font-black uppercase tracking-widest hover:brightness-125 transition-all">
+        Spotify
+      </a>
+    )}
+    
+    {apple_url && (
+      <a href={apple_url} target="_blank" class="text-[10px] text-[#FA243C] font-black uppercase tracking-widest hover:brightness-125 transition-all">
+        Apple
+      </a>
+    )}
+
+    {soundcloud_url && (
+      <a href={soundcloud_url} target="_blank" class="text-[10px] text-[#FF5500] font-black uppercase tracking-widest hover:brightness-125 transition-all">
+        Soundcloud
+      </a>
+    )}
+  </div>
+</div>
