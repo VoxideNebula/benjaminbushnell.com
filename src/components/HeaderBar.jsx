@@ -38,7 +38,7 @@ const HeaderBar = () => {
             </a>
           </li>
           <li className="hover:opacity-70 cursor-pointer">
-            <a href="/blog/" className="group relative inline-block">
+            <a href="/blog/1" className="group relative inline-block">
               <span>Blog</span>
               <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
             </a>
