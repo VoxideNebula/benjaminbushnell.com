@@ -19,6 +19,5 @@ export default defineConfig({
   redirects: {
     '/blog': '/blog/1',
     '/tags/:tag': '/tags/:tag/1',
-    '/tags/:tag/': '/tags/:tag/1'
   }
 });
