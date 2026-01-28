@@ -1,0 +1,66 @@
+---
+import TagCloud from '../../components/TagCloud.astro';
+import Base from '../../layouts/Base.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import Divider from '../../components/Divider.astro';
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getCollection("blog");
+  
+  // Sort posts by date (Most recent first)
+  const sortedPosts = allPosts.sort((a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  );
+
+  // Return paginated paths (6 posts per page)
+  return paginate(sortedPosts, { pageSize: 6 });
+}
+
+// All paginated data is passed via the "page" prop
+const { page } = Astro.props;
+const pageTitle = "Blog";
+---
+<Base pageTitle={pageTitle}>
+  <section class="pt-50 px-6">
+    <h2 class="text-center text-white/50 uppercase tracking-widest text-xs font-bold mb-4">
+      Filter by Topic
+    </h2>
+    <TagCloud />
+  </section>
+
+  <Divider />
+
+  <div class="max-w-7xl mx-auto px-6 pt-32 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {page.data.map((post) => (
+        <BlogCard 
+          pubDate={post.data.pubDate} 
+          url={`/posts/${post.id}/`} 
+          title={post.data.title} 
+          imageUrl={post.data.image.url} 
+          tags={post.data.tags}
+          content={post.body} 
+        />
+      ))}
+    </div>
+
+    <div class="mt-16 flex justify-center items-center gap-4">
+      {page.url.prev ? (
+        <a href={page.url.prev} class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition text-white">
+          ← Previous
+        </a>
+      ) : <span class="px-4 py-2 text-gray-600 border border-white/5 rounded-lg">← Previous</span>}
+
+      <span class="text-gray-400 font-medium">
+        Page {page.currentPage} of {page.lastPage}
+      </span>
+
+      {page.url.next ? (
+        <a href={page.url.next} class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition text-white">
+          Next →
+        </a>
+      ) : <span class="px-4 py-2 text-gray-600 border border-white/5 rounded-lg">Next →</span>}
+    </div>
+  </div>
+</Base>

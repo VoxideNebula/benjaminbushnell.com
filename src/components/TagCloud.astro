@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+// Extract unique tags and count how many times each appears
+const tags = allPosts.map((post) => post.data.tags).flat();
+const processedTags = tags.reduce((acc, tag) => {
+  acc[tag] = (acc[tag] || 0) + 1;
+  return acc;
+}, {});
+
+const uniqueTags = Object.keys(processedTags).sort();
+---
+
+<div class="flex flex-wrap gap-3 justify-center max-w-2xl mx-auto py-8">
+  {uniqueTags.map((tag) => (
+    <a 
+      href={`/tags/${tag}/1`}
+      class="group relative px-4 py-2 bg-white/5 border border-white/10 rounded-full transition-all duration-300 hover:border-[#ff9776]/50 hover:bg-[#ff9776]/10"
+    >
+      <span class="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
+        #{tag}
+      </span>
+      <span class="ml-2 text-[10px] font-bold text-gray-600 group-hover:text-[#ff9776]">
+        {processedTags[tag]}
+      </span>
+    </a>
+  ))}
+</div>

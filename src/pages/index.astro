@@ -3,10 +3,11 @@ import Prose from '../components/Prose.astro';
 import Base from '../layouts/Base.astro';
 import AboutMe from '../components/AboutMe.astro';
 import Music from '../components/Music.astro';
+import Divider from '../components/Divider.astro';
 const pageTitle = 'Home';
 ---
 <Base pageTitle={pageTitle}>
-  <section class="relative h-[45vh] w-full bg-slate-900">
+  <section class="relative h-[25vh] w-full bg-slate-900">
     <div
       class="absolute inset-0 bg-cover bg-center bg-fixed sm:bg-fixed bg-scroll"
       style="background-image: url('/hero-background.jpeg');"
@@ -20,7 +21,7 @@ const pageTitle = 'Home';
     <AboutMe />
   </div>
 
-  <span class="block w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-10"></span>
+  <Divider />
 
   <div class="prose prose-invert max-w-7xl mx-auto px-6 py-10 gap-10 items-center">
     <Music />

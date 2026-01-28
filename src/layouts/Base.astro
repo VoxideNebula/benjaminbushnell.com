@@ -1,12 +1,20 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 const { pageTitle } = Astro.props;
+
+// Components
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Fonts
+import '@fontsource/poppins';
+// Supports weights 300-800
+import '@fontsource-variable/open-sans';
 ---
 <html lang="en">
-  <head>
+  <head >
     <meta charset="utf-8" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
@@ -22,3 +30,10 @@ const { pageTitle } = Astro.props;
     <Footer />
   </body>
 </html>
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+}
+</style>
+

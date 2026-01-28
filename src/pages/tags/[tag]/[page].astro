@@ -1,0 +1,101 @@
+<!-- --- -->
+<!-- import { getCollection } from "astro:content"; -->
+<!-- import Base from "../../layouts/Base.astro"; -->
+<!-- import BlogPost from "../../components/BlogPost.astro"; -->
+<!---->
+<!-- export async function getStaticPaths() { -->
+<!--   const allPosts = await getCollection("blog"); -->
+<!--   const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())]; -->
+<!---->
+<!--   return uniqueTags.map((tag) => { -->
+<!--     const filteredPosts = allPosts.filter((post) => -->
+<!--       post.data.tags.includes(tag) -->
+<!--     ); -->
+<!--     return { -->
+<!--       params: { tag }, -->
+<!--       props: { posts: filteredPosts }, -->
+<!--     }; -->
+<!--   }); -->
+<!-- } -->
+<!---->
+<!-- const { tag } = Astro.params; -->
+<!-- const { posts } = Astro.props; -->
+<!-- --- -->
+<!---->
+<!-- <Base pageTitle={tag}> -->
+<!--   <p>Posts tagged with {tag}</p> -->
+<!--   <ul> -->
+<!--     { posts.map((post) => <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />) } -->
+<!--   </ul> -->
+<!-- </Base> -->
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import BlogCard from "../../../components/BlogCard.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getCollection("blog");
+  
+  // Sort all posts by date first (Newest to Oldest)
+  const sortedPosts = allPosts.sort((a, b) => 
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  );
+
+  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+  // Return a paginate() result for every single tag
+  return uniqueTags.flatMap((tag) => {
+    const filteredPosts = sortedPosts.filter((post) =>
+      post.data.tags.includes(tag)
+    );
+    
+    return paginate(filteredPosts, {
+      params: { tag },
+      pageSize: 6,
+    });
+  });
+}
+
+const { page } = Astro.props;
+const { tag } = Astro.params;
+---
+
+<Base pageTitle={`Posts tagged with "${tag}"`}>
+  <div class="max-w-7xl mx-auto px-6 pt-32 py-10">
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl font-bold text-white mb-2 capitalize">#{tag}</h1>
+      <p class="text-gray-400">Found {page.total} posts with this tag</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {page.data.map((post) => (
+        <BlogCard 
+          pubDate={post.data.pubDate} 
+          url={`/posts/${post.id}/`} 
+          title={post.data.title} 
+          imageUrl={post.data.image.url}
+          tags={post.data.tags}
+          content={post.body}
+        />
+      ))}
+    </div>
+
+    <div class="mt-16 flex justify-center items-center gap-4">
+      {page.url.prev ? (
+        <a href={page.url.prev} class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition text-white">
+          ← Previous
+        </a>
+      ) : <span class="px-4 py-2 text-gray-600 border border-white/5 rounded-lg">← Previous</span>}
+
+      <span class="text-gray-400 font-medium">
+        Page {page.currentPage} of {page.lastPage}
+      </span>
+
+      {page.url.next ? (
+        <a href={page.url.next} class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition text-white">
+          Next →
+        </a>
+      ) : <span class="px-4 py-2 text-gray-600 border border-white/5 rounded-lg">Next →</span>}
+    </div>
+  </div>
+</Base>

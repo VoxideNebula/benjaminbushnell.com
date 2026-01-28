@@ -1,39 +1,67 @@
 ---
 import Base from './Base.astro';
 const { frontmatter } = Astro.props;
+
+// Format the date to match your cards
+const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
-<Base pageTitle={frontmatter.title} >
-  <div class="max-w-7xl mx-auto px-6 pt-40 py-10">
-    <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.pubDate.toLocaleDateString()}</p>
-    <p><em>{frontmatter.description}</em></p>
-    <p>Written by: {frontmatter.author}</p>
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
-    <div class="tags">
-      {frontmatter.tags.map((tag: string) => (
-        <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
-      ))}
+<Base pageTitle={frontmatter.title}>
+  <article class="max-w-4xl mx-auto px-6 pt-40 pb-20">
+    
+    <header class="text-center mb-12">
+
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+        {frontmatter.title}
+      </h1>
+
+      <div class="flex items-center justify-center gap-4 text-slate-500 font-medium">
+        <span>{formattedDate}</span>
+        <span class="h-1 w-1 rounded-full bg-white/20"></span>
+        <span>{frontmatter.author}</span>
+      </div>
+      <div class="flex items-center justify-center gap-3 mb-6 pt-10">
+        {frontmatter.tags.map((tag: string) => (
+          <a 
+            href={`/tags/${tag}/1`} 
+            class="text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-[#ff9776] hover:border-[#ff9776]/30 transition-all"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    </header>
+
+    <div class="relative w-full aspect-video mb-16 rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+      <img 
+        src={frontmatter.image.url} 
+        alt={frontmatter.image.alt} 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
     </div>
 
-    <slot />
-  </div>
+    <div class="prose prose-invert prose-orange max-w-none 
+      prose-headings:font-bold prose-headings:tracking-tight
+      prose-p:text-gray-300 prose-p:leading-relaxed prose-p:text-lg
+      prose-a:text-[#ff9776] prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-white prose-code:text-[#ff9776]
+      prose-img:rounded-2xl prose-img:border prose-img:border-white/10">
+      
+      <p class="text-xl text-gray-400 italic mb-10 border-l-4 border-[#ff9776] pl-6 py-2">
+        {frontmatter.description}
+      </p>
+
+      <slot />
+    </div>
+
+    <footer class="mt-20 pt-10 border-t border-white/10 text-center">
+      <a href="/blog/1" class="text-gray-400 hover:text-white transition-colors inline-flex items-center gap-2">
+        ← Back to all posts
+      </a>
+    </footer>
+  </article>
 </Base>
-<style>
-  a {
-    color: #00539F;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .tag {
-    margin: 0.25em;
-    border: dotted 1px #a1a1a1;
-    border-radius: .5em;
-    padding: .5em 1em;
-    font-size: 1.15em;
-    background-color: #F8FCFD;
-  }
-</style>

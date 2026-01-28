@@ -1,0 +1,73 @@
+<!-- --- -->
+<!-- const { pubDate, url, title, imageUrl } = Astro.props; -->
+<!-- --- -->
+<!-- <a href={url} class="block"> -->
+<!--   <div class="group relative flex flex-col gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/10"> -->
+<!--      -->
+<!--     <div class="relative h-48 w-full overflow-hidden rounded-lg shadow-inner"> -->
+<!--       <img  -->
+<!--         src={imageUrl}  -->
+<!--         alt={title}  -->
+<!--         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"  -->
+<!--       /> -->
+<!--     </div> -->
+<!---->
+<!--     <div class="pb-2 text-center"> -->
+<!--       <h2 class="font-bold text-white text-xl group-hover:text-[#ff9776] transition-colors line-clamp-2"> -->
+<!--         {title} -->
+<!--       </h2> -->
+<!--       <h3 class="font-bold text-slate-500 text-m line-clamp-2"> -->
+<!--         {pubDate.toLocaleDateString()} -->
+<!--       </h3> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </a> -->
+---
+// src/components/BlogCard.astro
+const { url, title, imageUrl, pubDate, tags, content } = Astro.props;
+
+// 1. Calculate Read Time
+// We strip HTML/Markdown tags and count words
+const wordsPerMinute = 200;
+const wordCount = content ? content.split(/\s+/g).length : 0;
+const minutes = Math.ceil(wordCount / wordsPerMinute);
+const readTime = `${minutes} min read`;
+
+// 2. Format Date
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<a href={url} class="group block h-full">
+  <div class="flex flex-col h-full p-4 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/10 hover:border-white/20">
+    
+    <div class="relative h-48 w-full overflow-hidden rounded-lg mb-4">
+      <img src={imageUrl} alt={title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+      
+      <div class="absolute top-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-md rounded-md border border-white/10">
+        <span class="text-[10px] font-bold text-white/90 uppercase tracking-wider">{readTime}</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col flex-grow text-center">
+      <h2 class="font-bold text-white text-xl group-hover:text-[#ff9776] transition-colors line-clamp-2 mb-2">
+        {title}
+      </h2>
+      
+      <p class="text-slate-500 text-xs font-medium uppercase tracking-widest mb-4">
+        {formattedDate}
+      </p>
+
+      <div class="mt-auto flex flex-wrap justify-center gap-2">
+        {tags && tags.slice(0, 3).map((tag) => (
+          <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-gray-400 font-bold uppercase tracking-tighter hover:text-[#ff9776] transition-colors">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</a>
