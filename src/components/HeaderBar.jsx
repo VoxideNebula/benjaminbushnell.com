@@ -89,7 +89,7 @@ const HeaderBar = () => {
           <img
             src="/logo.png"
             alt="Benjamin Bushnell Logo"
-            className={`transition-all w-auto drop-shadow-lg duration-300 ease-in-out object-contain ${isScrolled ? 'h-12' : 'h-16'
+            className={`transition-all w-auto drop-shadow-lg duration-300 ease-in-out object-contain ${isScrolled ? 'h-16' : 'h-25'
               }`}
           />
         </a>

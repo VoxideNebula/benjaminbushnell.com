@@ -22,7 +22,7 @@ const { page } = Astro.props;
 const pageTitle = "Blog";
 ---
 <Base pageTitle={pageTitle}>
-  <section class="pt-50 px-6">
+  <section class="pt-40 px-6">
     <h2 class="text-center text-white/50 uppercase tracking-widest text-xs font-bold mb-4">
       Filter by Topic
     </h2>
@@ -31,7 +31,7 @@ const pageTitle = "Blog";
 
   <Divider />
 
-  <div class="max-w-7xl mx-auto px-6 pt-32 py-10">
+  <div class="max-w-7xl mx-auto px-6 pt-10 py-10">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {page.data.map((post) => (
         <BlogCard 
