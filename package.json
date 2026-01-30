@@ -17,6 +17,7 @@
     "@fontsource-variable/open-sans": "^5.2.7",
     "@fontsource/poppins": "^5.2.7",
     "@fontsource/twinkle-star": "^5.2.8",
+    "@giscus/react": "^3.1.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
