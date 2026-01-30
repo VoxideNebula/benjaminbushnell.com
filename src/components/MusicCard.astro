@@ -18,18 +18,18 @@ const { title, artist, spotify_url, apple_url, soundcloud_url, coverImage } = As
   </div>
 
   <div class="flex flex-wrap justify-center items-center gap-4 mt-2 w-full pt-4 border-t border-white/5">
-    {spotify_url && (
-      <a href={spotify_url} target="_blank" class="text-[10px] text-[#1DB954] font-black uppercase tracking-[0.2em] hover:brightness-150 transition-all">
-        Spotify
-      </a>
-    )}
-
     {apple_url && (
       <a href={apple_url} target="_blank" class="text-[10px] text-[#FA243C] font-black uppercase tracking-[0.2em] hover:brightness-150 transition-all">
         Apple Music
       </a>
     )}
-
+    <span class="h-1 w-1 rounded-full bg-white/20"></span>
+    {spotify_url && (
+      <a href={spotify_url} target="_blank" class="text-[10px] text-[#1DB954] font-black uppercase tracking-[0.2em] hover:brightness-150 transition-all">
+        Spotify
+      </a>
+    )}
+    <span class="h-1 w-1 rounded-full bg-white/20"></span>
     {soundcloud_url && (
       <a href={soundcloud_url} target="_blank" class="text-[10px] text-[#FF5500] font-black uppercase tracking-[0.2em] hover:brightness-150 transition-all">
         Soundcloud

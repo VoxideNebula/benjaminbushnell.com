@@ -41,7 +41,7 @@ The basic layout of an Astro file has two parts: the frontmatter, where you can 
 * Tailwind CSS
   * I chose Tailwind because I didn’t care to learn regular CSS, and it seemed like the fastest option. I still kind of hate how it looks in the code though.
 * React Astro integration
-  * I added the React integration just to get some exposure to React.
+  * I added the React integration just to get some exposure to React. This ended up being the wrong choice.
 * Google Gemini
   * Okay, I’m not proud of this, but I pretty much built the whole website by asking Gemini how to do each part. I assembled it component by component and generally knew what I was adding. It was faster than searching through Tailwind docs. I’m a good dev, I promise.
 
@@ -49,7 +49,8 @@ The basic layout of an Astro file has two parts: the frontmatter, where you can 
 
 The main structure of the website at the time of publication is as follows:
 
-* One base layout component, where I plugged in the header nav and footer components. This layout is imported and used on every other page.
+* A Base layout component, where I plugged in the header nav and footer components. This layout is imported and used on every other page.
+* A MarkDownPost layout component to wrap around my blog post markdown files
 * A home page
 * Blog pages generated using collections
 * Blog *post* pages generated using collections
@@ -62,10 +63,7 @@ As stated earlier, I started by following the [simple blog tutorial](https://doc
 
 Next, I followed the Astro docs to add Tailwind CSS and React to the project. I knew I wanted Tailwind to make styling easier, but in retrospect, I probably didn’t need React.
 
-> [!NOTE]
-> If you look in my Astro config, you’ll see that I switched to Preact in the end, since it’s lighter than React and can still run the React component I created, as described below.
-
-With React installed, I added the `HeaderBar.jsx` component. I used React here because I figured it would be the best way to recreate the reactive header on my friend's website. At this point, I didn’t yet have the responsive nav menu that turns into a hamburger menu on narrow screens—that was one of the last things I added.
+With React installed, I added the `HeaderBar.jsx` component. I used React here because I figured it would be the best way to recreate the reactive header on my friend's website. What I didn't know, is that the animations are all handled by CSS, and javascript was all that was needed to trigger the animations. Eventually, I ended up having to switch from React to native Astro due to limitations with the integration. It works much better now, and I was able to add a Nav underline hint for showing which page the visitor is currently looking at.
 
 The header turned out pretty well, in my opinion, though I had to fiddle with Tailwind to get the sizing and spacing right. This took some back-and-forth with Gemini. I added the logo later, which I created using vector curves in Affinity and only kind of don’t hate. I was still borrowing ideas from my friend’s site, but he had the unfair advantage of a graphic designer friend. I’m not terrible at design, but I’m no graphic designer.
 
@@ -79,7 +77,7 @@ I liked the banner photo on my friend’s website, especially how the header see
 
 For the Music section, I wanted a list of cards, each representing an album (of which there is currently only one). Each album is encapsulated in a `MusicCard` component, manually added to the Music component. Someday I may render these from a collection, but today is not that day. The layout is straightforward: two columns that collapse into one on mobile.
 
-Finally, the blog. In the original tutorial, the blog page renders a simple list of post titles. I wanted cards instead, similar to `MusicCard.astro`, so I created a `BlogCard.astro` component and adjusted the layout. Once that was done, I realized every blog post would appear on a single page. That clearly wouldn’t scale (assuming I actually write more blog posts).
+At last, we get to the blog. In the original tutorial, the blog page renders a simple list of post titles. I wanted cards instead, similar to `MusicCard.astro`, so I created a `BlogCard.astro` component and adjusted the layout. Once that was done, I realized every blog post would appear on a single page. That clearly wouldn’t scale (assuming I actually write more blog posts).
 
 So I turned to Gemini again and realized I could make the blog page a collection. A collection allows Astro to dynamically create pages based on some script. Now, when the site builds, Astro checks all posts in `src/blog/`. If there are more than six, it shows the six most recent on the first page, then creates additional paginated pages as needed. This limits each page to six posts and allows users to navigate older content. Later, I added a tag cloud showing all tags used across posts, which may get unwieldy someday, but for now it works.
 
@@ -91,16 +89,17 @@ Another collection.
 
 This time, a collection for the paginated tag pages—a sort of nested collection.
 
-> [!NOTE]
-> I learned all of this from Gemini. I would not have come up with nested collections on my own.
+(Btw, I learned all of this from Gemini. I would not have come up with nested collections on my own.)
 
-Once the nested collections were working, the site was essentially complete: a responsive header, About Me section, a music showcase, and a fully functional blog.
+Finally, I had to format the actual blog post pages. These are generated by the markdown files in `/src/blog/` and use the `MarkdownPostLayout.astro` layout to format the post with the frontmatter data. They look really slick and gave me the option to easily drop in Giscus for comments and a snappy back link to the main blog page.
+
+Once the nested tag collections were working, and my posts were rendering with professional style, the site was essentially complete: I had made a responsive header, About Me section, a music showcase, and a fully functional blog in the matter of a few days.
 
 ## Closing Thoughts
 
-I do think my use of AI was excessive, and I want to work on future projects or components without it to build skill. I got a bit intoxicated by the speed at which I could produce results with a framework I was still learning.
+I do think my use of AI was excessive, and I want to work on future projects or components without it to build skill. I got a bit intoxicated by the speed at which I could produce results with a framework I was still learning. Thought, I can't help but wonder if using AI sucked a bit of the creativity out of the process. I tend to think that AI produces clean, but ultimately lifeless results. For now, I'm proud of what I learned. And the knowledge of what's possible with Astro, Tailwind, and React, will stick with me.
 
-There are also artifacts and unnecessary code left behind from AI-generated output, so I plan to clean those up while learning Tailwind classes and digging deeper into how collections work.
+There are artifacts and unnecessary code left behind from AI-generated output, so I plan to clean those up while learning Tailwind classes and digging deeper into how collections work.
 
 ### Skills That Brought Me Success
 

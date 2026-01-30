@@ -1,0 +1,94 @@
+---
+const { pathname } = Astro.url;
+
+const isActive = (href: string) => {
+  const checkPath = pathname.endsWith('/') && pathname.length > 1 
+    ? pathname.slice(0, -1) 
+    : pathname;
+  return checkPath === href;
+};
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Blog', href: '/blog/1' },
+];
+---
+
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out bg-transparent py-6">
+  <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <a href="/" class="z-50">
+      <img id="header-logo" src="/logo.png" alt="Logo" class="transition-all w-auto drop-shadow-lg duration-300 ease-in-out object-contain h-25" />
+    </a>
+
+    <ul class="hidden md:flex space-x-8 font-bold text-lg text-white">
+      {navLinks.map((link) => (
+        <li class="hover:opacity-70 cursor-pointer">
+          <a href={link.href} class="group relative inline-block">
+            <span>{link.name}</span>
+            <span class={`absolute bottom-0 left-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full ${isActive(link.href) ? 'w-full' : 'w-0'}`}></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    {/* Symmetrical Hamburger Button */}
+    <button id="menu-toggle" class="md:hidden z-50 text-white focus:outline-none p-2 w-10 h-10 flex items-center justify-center" aria-label="Toggle Menu">
+      <div class="w-6 h-5 relative">
+        <span class="hamburger-line absolute top-0 left-0 w-full h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+        <span class="hamburger-line absolute top-1/2 left-0 -translate-y-1/2 w-full h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+        <span class="hamburger-line absolute bottom-0 left-0 w-full h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+      </div>
+    </button>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-black transition-transform duration-500 ease-in-out transform translate-x-full md:hidden flex flex-col items-center justify-center space-y-8 bg-black/95 backdrop-blur-lg">
+      {navLinks.map((link) => (
+        <a href={link.href} class={`text-2xl font-bold transition-colors ${isActive(link.href) ? 'text-[#ff9776] border-b-2 border-[#ff9776]' : 'text-white hover:text-[#ff9776]'}`}>
+          {link.name}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const logo = document.getElementById('header-logo');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const lines = document.querySelectorAll('.hamburger-line');
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 10;
+    header?.classList.toggle('bg-black', scrolled);
+    header?.classList.toggle('shadow-md', scrolled);
+    header?.classList.toggle('py-4', scrolled);
+    header?.classList.toggle('bg-transparent', !scrolled);
+    header?.classList.toggle('py-6', !scrolled);
+    logo?.classList.toggle('h-16', scrolled);
+    logo?.classList.toggle('h-25', !scrolled);
+  });
+
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('translate-x-0');
+    mobileMenu?.classList.toggle('translate-x-full', !isOpen);
+
+    if (isOpen) {
+      // Top line moves to center and rotates 45deg
+      lines[0].classList.add('top-1/2', '-translate-y-1/2', 'rotate-45');
+      lines[0].classList.remove('top-0');
+      
+      // Middle line disappears
+      lines[1].classList.add('opacity-0');
+      
+      // Bottom line moves to center and rotates -45deg
+      lines[2].classList.add('bottom-1/2', 'translate-y-1/2', '-rotate-45');
+      lines[2].classList.remove('bottom-0');
+    } else {
+      lines[0].classList.remove('top-1/2', '-translate-y-1/2', 'rotate-45');
+      lines[0].classList.add('top-0');
+      lines[1].classList.remove('opacity-0');
+      lines[2].classList.remove('bottom-1/2', 'translate-y-1/2', '-rotate-45');
+      lines[2].classList.add('bottom-0');
+    }
+  });
+</script>
