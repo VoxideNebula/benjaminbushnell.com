@@ -1,6 +1,7 @@
 ---
 import Base from './Base.astro';
 const { frontmatter } = Astro.props;
+import Comments from '../components/Comments.jsx'; // Import the component
 
 // Format the date to match your cards
 const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
@@ -63,5 +64,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', 
         ← Back to all posts
       </a>
     </footer>
+
+    <Comments client:visible />
   </article>
 </Base>

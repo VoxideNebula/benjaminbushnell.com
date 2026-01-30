@@ -6,14 +6,14 @@ import mdx from "@astrojs/mdx";
 
 import sitemap from "@astrojs/sitemap";
 
-import preact from "@astrojs/preact";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [mdx(), sitemap(), preact({ compat: true })],
+  integrations: [mdx(), sitemap(), react()],
   site: "https://www.benjaminbushnell.com",
   base: '/',
   redirects: {
