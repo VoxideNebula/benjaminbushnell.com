@@ -1,3 +1,3 @@
 # benjaminbushnell.com
 
-Built using Astro!
+Built with Astro!
