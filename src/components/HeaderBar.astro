@@ -17,7 +17,7 @@ const navLinks = [
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out bg-transparent py-6">
   <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between">
     <a href="/" class="z-50">
-      <img id="header-logo" src="/logo.png" alt="Logo" class="transition-all w-auto drop-shadow-lg duration-300 ease-in-out object-contain h-25" />
+      <img id="header-logo" src="/logo.png" alt="Logo" class="transition-all w-auto drop-shadow-lg duration-300 ease-in-out object-contain h-18" />
     </a>
 
     <ul class="hidden md:flex space-x-8 font-bold text-lg text-white">
@@ -64,8 +64,8 @@ const navLinks = [
     header?.classList.toggle('py-4', scrolled);
     header?.classList.toggle('bg-transparent', !scrolled);
     header?.classList.toggle('py-6', !scrolled);
-    logo?.classList.toggle('h-16', scrolled);
-    logo?.classList.toggle('h-25', !scrolled);
+    logo?.classList.toggle('h-12', scrolled);
+    logo?.classList.toggle('h-18', !scrolled);
   });
 
   menuToggle?.addEventListener('click', () => {
