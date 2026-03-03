@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import ArtCard from '../components/ArtCard.astro';
+import PageHero from '../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+
+const artworks = await getCollection('art');
+const sortedArt = artworks.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categories = ['all', 'photography', 'digital', 'traditional'];
+---
+
+<Base pageTitle="Art & Photography">
+  <PageHero 
+    title="Art & Photography" 
+    subtitle="Visual creations and photographic works"
+  />
+
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="flex justify-center gap-4 mb-12 flex-wrap">
+      {categories.map((cat) => (
+        <button 
+          class="filter-btn px-6 py-2 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors capitalize"
+          data-category={cat}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="art-grid">
+      {sortedArt.map((art, index) => (
+        <div class="art-item" data-category={art.data.category}>
+          <ArtCard
+            title={art.data.title}
+            image={art.data.image}
+            category={art.data.category}
+            slug={art.id}
+            loading={index < 4 ? "eager" : "lazy"}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const artItems = document.querySelectorAll('.art-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+      
+      filterBtns.forEach(b => b.classList.remove('bg-purple-600', 'border-purple-600'));
+      btn.classList.add('bg-purple-600', 'border-purple-600');
+
+      artItems.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  filterBtns[0]?.classList.add('bg-purple-600', 'border-purple-600');
+</script>

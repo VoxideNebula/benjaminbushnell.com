@@ -16,12 +16,12 @@ const uniqueTags = Object.keys(processedTags).sort();
   {uniqueTags.map((tag) => (
     <a 
       href={`/tags/${tag}/1`}
-      class="group relative px-4 py-2 bg-white/5 border border-white/10 rounded-full transition-all duration-300 hover:border-[#ff9776]/50 hover:bg-[#ff9776]/10"
+      class="group relative px-4 py-2 bg-white/5 border border-white/10 rounded-full transition-all duration-300 hover:border-purple-400/50 hover:bg-purple-400/10"
     >
       <span class="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
         #{tag}
       </span>
-      <span class="ml-2 text-[10px] font-bold text-gray-600 group-hover:text-[#ff9776]">
+      <span class="ml-2 text-[10px] font-bold text-gray-600 group-hover:text-purple-400">
         {processedTags[tag]}
       </span>
     </a>

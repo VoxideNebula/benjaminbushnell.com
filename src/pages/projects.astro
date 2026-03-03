@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PageHero from '../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base pageTitle="Projects & Portfolio">
+  <PageHero 
+    title="Projects & Portfolio" 
+    subtitle="Explore my work in cloud infrastructure, automation, and development"
+  />
+
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {sortedProjects.map((project, index) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          image={project.data.image}
+          tags={project.data.tags}
+          github={project.data.github}
+          demo={project.data.demo}
+          slug={project.id}
+          loading={index < 3 ? "eager" : "lazy"}
+        />
+      ))}
+    </div>
+  </div>
+</Base>

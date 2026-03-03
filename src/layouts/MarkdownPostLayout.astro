@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import { Image } from 'astro:assets';
 const { frontmatter } = Astro.props;
 import Comments from '../components/Comments.jsx'; // Import the component
 
@@ -28,7 +29,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', 
         {frontmatter.tags.map((tag: string) => (
           <a 
             href={`/tags/${tag}/1`} 
-            class="text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-[#ff9776] hover:border-[#ff9776]/30 transition-all"
+            class="text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-purple-400 hover:border-purple-400/30 transition-all"
           >
             {tag}
           </a>
@@ -37,9 +38,11 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', 
     </header>
 
     <div class="relative w-full aspect-video mb-16 rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-      <img 
+      <Image 
         src={frontmatter.image.url} 
-        alt={frontmatter.image.alt} 
+        alt={frontmatter.image.alt}
+        width={1200}
+        height={675}
         class="w-full h-full object-cover"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
@@ -48,14 +51,14 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', 
     <div class="prose prose-invert prose-orange max-w-none 
       prose-headings:font-bold prose-headings:tracking-tight
       prose-p:text-gray-300 prose-p:leading-relaxed prose-p:text-lg
-      prose-a:text-[#ff9776] prose-a:no-underline
-      prose-strong:text-white prose-code:text-[#ff9776]
+      prose-a:text-purple-400 prose-a:no-underline
+      prose-strong:text-white prose-code:text-purple-400
       prose-img:rounded-2xl prose-img:border prose-img:border-white/10
       prose-a:no-underline
       prose-a:transition-all
       [&_a:hover]:underline">
       
-      <p class="text-xl text-gray-400 italic mb-10 border-l-4 border-[#ff9776] pl-6 py-2">
+      <p class="text-xl text-gray-400 italic mb-10 border-l-4 border-purple-500 pl-6 py-2">
         {frontmatter.description}
       </p>
 

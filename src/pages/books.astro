@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import BookCard from '../components/BookCard.astro';
+import PageHero from '../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+
+const books = await getCollection('books');
+const sortedBooks = books.sort((a, b) => {
+  if (!a.data.publishDate) return 1;
+  if (!b.data.publishDate) return -1;
+  return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+});
+---
+
+<Base pageTitle="Books & Writings">
+  <section class="relative min-h-[30vh] w-full bg-gradient-to-br from-purple-900/30 via-slate-900 to-black flex items-center justify-center">
+    <div class="absolute inset-0 bg-[url('/hero-background.jpeg')] bg-cover bg-center bg-fixed opacity-20"></div>
+    <div class="relative z-10 text-center px-6 py-20">
+      <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">Books & Writings</h1>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">Published works and upcoming releases</p>
+      <a href="https://books.benjaminbushnell.com" target="_blank" class="inline-block mt-6 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors">
+        Visit Books Website →
+      </a>
+    </div>
+  </section>
+
+  <div class="max-w-5xl mx-auto px-6 py-16">
+    <div class="space-y-8">
+      {sortedBooks.map((book, index) => (
+        <BookCard
+          title={book.data.title}
+          subtitle={book.data.subtitle}
+          coverImage={book.data.coverImage}
+          status={book.data.status}
+          externalLink={book.data.externalLink}
+          slug={book.id}
+          loading={index < 2 ? "eager" : "lazy"}
+        >
+          <p class="text-gray-300">{book.data.description}</p>
+        </BookCard>
+      ))}
+    </div>
+  </div>
+</Base>

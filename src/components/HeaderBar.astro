@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 const { pathname } = Astro.url;
 
 const isActive = (href: string) => {
@@ -10,6 +12,10 @@ const isActive = (href: string) => {
 
 const navLinks = [
   { name: 'Home', href: '/' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Music', href: '/music' },
+  { name: 'Art', href: '/art' },
+  { name: 'Books', href: '/books' },
   { name: 'Blog', href: '/blog/1' },
 ];
 ---
@@ -17,7 +23,7 @@ const navLinks = [
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out bg-transparent py-6">
   <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between">
     <a href="/" class="z-50">
-      <img id="header-logo" src="/logo.png" alt="Logo" class="transition-all w-auto drop-shadow-lg duration-300 ease-in-out object-contain h-18" />
+      <Image id="header-logo" src="/logo.png" alt="Logo" width={72} height={72} loading="eager" class="transition-all w-auto drop-shadow-lg duration-300 ease-in-out object-contain h-18" />
     </a>
 
     <ul class="hidden md:flex space-x-8 font-bold text-lg text-white">
@@ -42,7 +48,7 @@ const navLinks = [
 
     <div id="mobile-menu" class="fixed inset-0 bg-black transition-transform duration-500 ease-in-out transform translate-x-full md:hidden flex flex-col items-center justify-center space-y-8 bg-black/95 backdrop-blur-lg">
       {navLinks.map((link) => (
-        <a href={link.href} class={`text-2xl font-bold transition-colors ${isActive(link.href) ? 'text-[#ff9776] border-b-2 border-[#ff9776]' : 'text-white hover:text-[#ff9776]'}`}>
+        <a href={link.href} class={`text-2xl font-bold transition-colors ${isActive(link.href) ? 'text-purple-400 border-b-2 border-purple-400' : 'text-white hover:text-purple-400'}`}>
           {link.name}
         </a>
       ))}

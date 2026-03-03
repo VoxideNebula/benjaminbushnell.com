@@ -1,0 +1,11 @@
+---
+const { title, subtitle } = Astro.props;
+---
+
+<section class="relative min-h-[30vh] w-full bg-gradient-to-br from-purple-900/30 via-slate-900 to-black flex items-center justify-center">
+  <div class="absolute inset-0 bg-[url('/hero-background.jpeg')] bg-cover bg-center bg-fixed opacity-20"></div>
+  <div class="relative z-10 text-center px-6 py-20">
+    <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">{title}</h1>
+    {subtitle && <p class="text-xl text-gray-300 max-w-2xl mx-auto">{subtitle}</p>}
+  </div>
+</section>
