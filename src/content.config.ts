@@ -57,17 +57,22 @@ const albums = defineCollection({
   })
 });
 
-// Art/Photography collection
-const art = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.md', base: "./src/art" }),
+// Art Albums collection
+const artAlbums = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.md', base: "./src/art-albums" }),
   schema: z.object({
     title: z.string(),
-    image: z.string(),
-    description: z.string().optional(),
+    description: z.string(),
+    coverImage: z.string(),
     date: z.date(),
     category: z.enum(['photography', 'digital', 'traditional']),
     featured: z.boolean().default(false),
-    tags: z.array(z.string()).optional()
+    tags: z.array(z.string()).optional(),
+    artworks: z.array(z.object({
+      image: z.string(),
+      title: z.string().optional(),
+      description: z.string().optional()
+    }))
   })
 });
 
@@ -87,4 +92,4 @@ const books = defineCollection({
 });
 
 // Export all collections
-export const collections = { blog, projects, albums, art, books };
+export const collections = { blog, projects, albums, artAlbums, books };

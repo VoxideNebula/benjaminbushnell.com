@@ -4,8 +4,8 @@ import ArtCard from '../components/ArtCard.astro';
 import PageHero from '../components/PageHero.astro';
 import { getCollection } from 'astro:content';
 
-const artworks = await getCollection('art');
-const sortedArt = artworks.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const artAlbums = await getCollection('artAlbums');
+const sortedAlbums = artAlbums.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const categories = ['all', 'photography', 'digital', 'traditional'];
 ---
@@ -29,13 +29,13 @@ const categories = ['all', 'photography', 'digital', 'traditional'];
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="art-grid">
-      {sortedArt.map((art, index) => (
-        <div class="art-item" data-category={art.data.category}>
+      {sortedAlbums.map((album, index) => (
+        <div class="art-item" data-category={album.data.category}>
           <ArtCard
-            title={art.data.title}
-            image={art.data.image}
-            category={art.data.category}
-            slug={art.id}
+            title={album.data.title}
+            image={album.data.coverImage}
+            category={album.data.category}
+            slug={album.id}
             loading={index < 4 ? "eager" : "lazy"}
           />
         </div>
