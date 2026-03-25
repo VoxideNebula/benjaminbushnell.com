@@ -21,7 +21,7 @@ const { Content } = await render(album);
       <a href="/music" class="text-purple-400 hover:text-purple-300 mb-6 inline-block">← Back to Music</a>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        <div class="sticky top-24">
+        <div class="md:sticky md:top-24">
           <Image 
             src={album.data.coverImage} 
             alt={album.data.title}
